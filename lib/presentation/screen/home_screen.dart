@@ -27,22 +27,19 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: buildPostListView(postModel),
+        child:  ListView.builder(
+        itemCount: postModel.length,
+        itemBuilder: (context, index) {
+          PostModel post = postModel[index];
+          return ListTile(
+            title: Text(
+              post.title.toString(),
+            ),
+          );
+        },
+      ),
       ),
     );
   }
 
-  Widget buildPostListView(List<PostModel> postData) {
-    return ListView.builder(
-      itemCount: postData.length,
-      itemBuilder: (context, index) {
-        PostModel post = postData[index];
-        return ListTile(
-          title: Text(
-            post.title.toString(),
-          ),
-        );
-      },
-    );
-  }
 }
